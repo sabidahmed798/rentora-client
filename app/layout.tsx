@@ -5,8 +5,10 @@ import "./globals.css";
 // import { Navbar } from "@/components/navbar"
 // import { cn } from "@/lib/utils";
 import { Navbar } from "../components/navbar";
+import { Footer } from "../components/footer";
 import { cn } from "../lib/utils";
 import { ThemeProvider } from "../components/theme-provider";
+import { EquipmentCatalog } from "@/components/equipment-catalog";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -35,6 +37,8 @@ export default function RootLayout({
         <ThemeProvider>
           <Navbar />
           {children}
+
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
