@@ -29,6 +29,8 @@ const roles = [
   },
 ] as const
 
+type Role = (typeof roles)[number]["value"]
+
 export function RegisterForm() {
   const router = useRouter()
   const [error, setError] = useState<string | null>(null)
@@ -40,11 +42,12 @@ export function RegisterForm() {
     setPending(true)
 
     const formData = new FormData(event.currentTarget)
+    const roleValue = String(formData.get("role") ?? "customer")
     const payload = {
       name: String(formData.get("name") ?? ""),
       email: String(formData.get("email") ?? ""),
       password: String(formData.get("password") ?? ""),
-      role: String(formData.get("role") ?? "customer"),
+      role: roles.some((role) => role.value === roleValue) ? (roleValue as Role) : "customer",
     }
 
     console.log("[register] form payload:", payload)
