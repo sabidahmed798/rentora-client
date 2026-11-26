@@ -8,6 +8,7 @@ import { cn } from "cn";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { createproduct } from "@/lib/actions/products";
 
 const categories = [
   "Earthmoving",
@@ -140,13 +141,15 @@ export function AddEquipmentForm() {
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    fetch("http://localhost:5000/product", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    // fetch("http://localhost:5000/product", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(formData),
+    // });
+    const result = createproduct(formData);
+    console.log(result);
 
     const data = Object.fromEntries(formData.entries()) as Record<
       string,
@@ -156,14 +159,6 @@ export function AddEquipmentForm() {
   }
 
   if (submitted) {
-    // fetch(" http://localhost:5000/product ", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(data),
-    // });
-
     return (
       <div className="mx-auto max-w-2xl rounded-2xl border border-border bg-card p-8 text-center">
         <CircleCheckIcon

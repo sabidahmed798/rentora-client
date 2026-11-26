@@ -8,7 +8,7 @@ export  const createproduct = async (data: FormData) => {
     headers: {
         'content-type': 'application/json',
     },
-    body: data,
+    body: JSON.stringify(data),
 
    } );
    return res.json(); 
